@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Operação iFood" />
+<title>Operação iFood</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f5f5;color:#1a1a1a;min-height:100vh;}
+.app{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;position:relative;padding-bottom:70px;}
+
+/* HEADER */
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 12px;background:#fff;border-bottom:1px solid #f0f0f0;}
+.top-logo{width:38px;height:38px;background:#EA1D2C;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.top-logo i{color:#fff;font-size:20px;}
+.top-title{font-size:17px;font-weight:600;color:#1a1a1a;}
+.top-sub{font-size:12px;color:#888;margin-top:1px;}
+
+/* USER CHIP */
+.user-chip{display:flex;align-items:center;gap:7px;background:#f5f5f5;border:1px solid #e8e8e8;border-radius:24px;padding:5px 10px 5px 5px;}
+.chip-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;}
+.chip-name{font-size:13px;font-weight:600;color:#1a1a1a;}
+.chip-role{font-size:11px;color:#888;}
+.chip-out{background:none;border:none;color:#aaa;cursor:pointer;padding:2px;margin-left:2px;font-size:17px;line-height:1;}
+
+/* SYNC */
+.sync-pill{display:flex;align-items:center;gap:6px;font-size:12px;padding:8px 14px;margin:10px 16px 0;border-radius:24px;background:#fff3cd;color:#856404;border:1px solid #ffc107;}
+.sync-pill.ok{background:#d1e7dd;color:#0f5132;border-color:#badbcc;}
+.sync-pill.error{background:#f8d7da;color:#842029;border-color:#f5c2c7;}
+.sync-pill i{font-size:14px;}
+
+/* PROGRESS */
+.prog-card{margin:12px 16px;background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:16px;}
+.prog-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.prog-label{font-size:13px;color:#888;}
+.prog-pct{font-size:24px;font-weight:700;color:#1a1a1a;}
+.prog-track{height:8px;background:#f0f0f0;border-radius:8px;overflow:hidden;margin-bottom:10px;}
+.prog-fill{height:100%;background:#EA1D2C;border-radius:8px;transition:width 0.4s;}
+.prog-fill.done{background:#1D9E75;}
+.prog-status{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;}
+.prog-status.ready{color:#1D9E75;}
+.prog-status.pending{color:#EA1D2C;}
+.prog-status i{font-size:16px;}
+
+/* BOTTOM NAV */
+.bot-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;display:flex;background:#fff;border-top:1px solid #f0f0f0;z-index:100;padding-bottom:env(safe-area-inset-bottom);}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0 8px;background:none;border:none;cursor:pointer;color:#aaa;font-size:11px;}
+.nav-btn i{font-size:24px;}
+.nav-btn.active{color:#EA1D2C;}
+.nav-btn span{font-weight:500;}
+
+/* PROFILE TABS */
+.profile-scroll{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.profile-scroll::-webkit-scrollbar{display:none;}
+.prof-chip{display:flex;align-items:center;gap:6px;padding:9px 16px;border-radius:24px;border:1.5px solid #e8e8e8;background:#fff;color:#666;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.prof-chip i{font-size:16px;}
+.prof-chip.active{background:#EA1D2C;color:#fff;border-color:#EA1D2C;}
+
+/* SECTIONS */
+.section{padding:0 16px;margin-bottom:20px;}
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.sec-title{font-size:12px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.06em;}
+.sec-badge{font-size:12px;background:#f5f5f5;color:#888;padding:3px 10px;border-radius:10px;border:1px solid #e8e8e8;}
+
+/* TASK CARD */
+.task-card{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #f0f0f0;border-radius:14px;padding:14px;margin-bottom:8px;cursor:pointer;transition:background .1s;}
+.task-card:active{background:#fafafa;}
+.task-card.checked{opacity:.55;}
+.task-card.checked .task-text{text-decoration:line-through;color:#aaa;}
+.check-box{width:28px;height:28px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
+.task-card.checked .check-box{background:#1D9E75;border-color:#1D9E75;}
+.task-card.checked .check-box i{color:#fff;}
+.check-box i{color:transparent;font-size:15px;}
+.task-body{flex:1;min-width:0;}
+.task-text{font-size:15px;color:#1a1a1a;line-height:1.4;}
+.task-by{font-size:12px;color:#aaa;margin-top:3px;display:flex;align-items:center;gap:4px;}
+.task-by i{font-size:13px;}
+.task-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;}
+.tag{font-size:11px;padding:3px 9px;border-radius:10px;white-space:nowrap;font-weight:500;}
+.tag-urgent{background:#FCEBEB;color:#A32D2D;}
+.tag-config{background:#E6F1FB;color:#185FA5;}
+.tag-op{background:#EAF3DE;color:#3B6D11;}
+.tag-fin{background:#FAEEDA;color:#854F0B;}
+.del-btn{background:none;border:none;color:#ccc;font-size:22px;cursor:pointer;padding:2px;line-height:1;}
+.del-btn:active{color:#EA1D2C;}
+
+/* ADD TASK */
+.add-trigger{display:flex;align-items:center;gap:10px;padding:14px;border:1.5px dashed #ddd;border-radius:14px;color:#aaa;font-size:14px;cursor:pointer;background:none;width:100%;margin-top:4px;}
+.add-trigger i{font-size:20px;}
+.add-form{background:#f9f9f9;border:1px solid #e8e8e8;border-radius:14px;padding:14px;margin-top:4px;display:none;flex-direction:column;gap:10px;}
+.add-form.open{display:flex;}
+.add-input{width:100%;padding:12px 14px;border:1.5px solid #ddd;border-radius:10px;font-size:15px;background:#fff;color:#1a1a1a;outline:none;}
+.add-input:focus{border-color:#EA1D2C;}
+.add-row{display:flex;gap:8px;align-items:center;}
+.add-select{flex:1;padding:11px 12px;border:1.5px solid #ddd;border-radius:10px;font-size:14px;background:#fff;color:#1a1a1a;outline:none;}
+.btn-add{padding:11px 18px;background:#EA1D2C;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;}
+.btn-cancel{padding:11px 14px;background:#fff;border:1.5px solid #ddd;border-radius:10px;font-size:14px;color:#888;cursor:pointer;}
+
+/* RESET */
+.reset-row{padding:0 16px 12px;}
+.reset-btn{width:100%;padding:14px;background:#fff;border:1.5px solid #e8e8e8;border-radius:14px;font-size:14px;color:#888;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:500;}
+.reset-btn i{font-size:18px;}
+.reset-btn:active{background:#f5f5f5;}
+
+/* LOGIN */
+.login-wrap{padding:40px 20px;}
+.login-logo{width:64px;height:64px;background:#EA1D2C;border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.login-logo i{color:#fff;font-size:32px;}
+.login-title{font-size:22px;font-weight:700;color:#1a1a1a;text-align:center;margin-bottom:6px;}
+.login-sub{font-size:14px;color:#888;text-align:center;margin-bottom:32px;}
+.field{margin-bottom:14px;}
+.field label{font-size:13px;color:#888;display:block;margin-bottom:6px;font-weight:500;}
+.field input{width:100%;padding:14px;border:1.5px solid #e8e8e8;border-radius:12px;font-size:16px;background:#fff;color:#1a1a1a;outline:none;}
+.field input:focus{border-color:#EA1D2C;}
+.login-btn{width:100%;padding:15px;background:#EA1D2C;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:6px;}
+.login-btn:active{background:#c4111e;}
+.login-err{font-size:13px;color:#842029;background:#f8d7da;border:1px solid #f5c2c7;border-radius:10px;padding:10px 14px;margin-top:12px;display:none;}
+.login-err.show{display:block;}
+
+/* DASHBOARD */
+.dash-pad{padding:0 16px;}
+.metric-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
+.metric-card{background:#f9f9f9;border-radius:14px;padding:16px;}
+.metric-label{font-size:12px;color:#aaa;margin-bottom:6px;font-weight:500;}
+.metric-val{font-size:28px;font-weight:700;color:#1a1a1a;}
+.metric-val.green{color:#1D9E75;}
+.metric-val.red{color:#EA1D2C;}
+.prof-stat-card{background:#fff;border:1px solid #f0f0f0;border-radius:14px;padding:14px;margin-bottom:10px;}
+.ps-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.ps-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.ps-icon i{font-size:18px;}
+.ps-name{font-size:15px;font-weight:600;color:#1a1a1a;}
+.ps-badge{margin-left:auto;font-size:12px;padding:3px 10px;border-radius:10px;font-weight:600;}
+.badge-ok{background:#d1e7dd;color:#0f5132;}
+.badge-pend{background:#f8d7da;color:#842029;}
+.badge-part{background:#fff3cd;color:#664d03;}
+.ps-track{height:6px;background:#f0f0f0;border-radius:6px;overflow:hidden;margin-bottom:8px;}
+.ps-fill{height:100%;border-radius:6px;}
+.ps-count{font-size:13px;color:#aaa;}
+.ps-count span{color:#1a1a1a;font-weight:600;}
+.act-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:#fff;border:1px solid #f0f0f0;border-radius:14px;margin-bottom:8px;}
+.act-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.act-body{flex:1;}
+.act-text{font-size:14px;color:#1a1a1a;}
+.act-meta{font-size:12px;color:#aaa;margin-top:2px;}
+.act-who{font-size:12px;padding:3px 9px;border-radius:10px;flex-shrink:0;font-weight:500;}
+.who-dono{background:#EEEDFE;color:#3C3489;}
+.who-gerente{background:#E6F1FB;color:#185FA5;}
+.who-caixa{background:#FAEEDA;color:#854F0B;}
+.who-expedicao{background:#EAF3DE;color:#3B6D11;}
+.snap-btn{width:100%;padding:14px;background:#fff;border:1.5px solid #e8e8e8;border-radius:14px;font-size:14px;color:#888;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px;font-weight:500;}
+.snap-btn i{font-size:18px;}
+.snap-btn:active{background:#f5f5f5;}
+
+/* ADMIN */
+.admin-pad{padding:0 16px 20px;}
+.user-card{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #f0f0f0;border-radius:14px;padding:14px;margin-bottom:8px;}
+.u-av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0;}
+.u-info{flex:1;}
+.u-name{font-size:15px;font-weight:600;color:#1a1a1a;}
+.u-sub{font-size:12px;color:#aaa;margin-top:2px;}
+.u-role{font-size:12px;padding:3px 10px;border-radius:10px;font-weight:500;}
+.r-dono{background:#EEEDFE;color:#3C3489;}
+.r-gerente{background:#E6F1FB;color:#185FA5;}
+.r-caixa{background:#FAEEDA;color:#854F0B;}
+.r-expedicao{background:#EAF3DE;color:#3B6D11;}
+.u-del{background:none;border:none;color:#ccc;font-size:22px;cursor:pointer;padding:4px;line-height:1;}
+.u-del:active{color:#EA1D2C;}
+.new-user-form{background:#f9f9f9;border:1px solid #e8e8e8;border-radius:14px;padding:16px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+</style>
+</head>
+<body>
+<div class="app"><div id="root"></div></div>
+<script>
+const TK='ifood_app_tasks',UK='ifood_app_users',AK='ifood_app_activity';
+const DT=[
+  {id:1,profile:'dono',text:'Verificar saldo para repasse iFood',tag:'fin',checked:false,checkedBy:null,checkedAt:null},
+  {id:2,profile:'dono',text:'Confirmar horário de abertura no app',tag:'config',checked:false,checkedBy:null,checkedAt:null},
+  {id:3,profile:'dono',text:'Responder avaliações negativas',tag:'op',checked:false,checkedBy:null,checkedAt:null},
+  {id:4,profile:'dono',text:'Verificar campanhas e promoções ativas',tag:'config',checked:false,checkedBy:null,checkedAt:null},
+  {id:5,profile:'gerente',text:'Checar estoque dos itens mais vendidos',tag:'op',checked:false,checkedBy:null,checkedAt:null},
+  {id:6,profile:'gerente',text:'Confirmar escala e presença da equipe',tag:'urgent',checked:false,checkedBy:null,checkedAt:null},
+  {id:7,profile:'gerente',text:'Testar tablet iFood — internet ok',tag:'config',checked:false,checkedBy:null,checkedAt:null},
+  {id:8,profile:'gerente',text:'Verificar cardápio e preços',tag:'config',checked:false,checkedBy:null,checkedAt:null},
+  {id:9,profile:'gerente',text:'Conferir embalagens (caixas, sacos, lacres)',tag:'op',checked:false,checkedBy:null,checkedAt:null},
+  {id:10,profile:'caixa',text:'Conferir fundo de caixa inicial',tag:'fin',checked:false,checkedBy:null,checkedAt:null},
+  {id:11,profile:'caixa',text:'Verificar maquininha de cartão',tag:'urgent',checked:false,checkedBy:null,checkedAt:null},
+  {id:12,profile:'caixa',text:'Registrar pedidos pendentes do dia anterior',tag:'fin',checked:false,checkedBy:null,checkedAt:null},
+  {id:13,profile:'caixa',text:'Confirmar integrações de pagamento iFood',tag:'config',checked:false,checkedBy:null,checkedAt:null},
+  {id:14,profile:'expedicao',text:'Verificar temperatura dos equipamentos',tag:'urgent',checked:false,checkedBy:null,checkedAt:null},
+  {id:15,profile:'expedicao',text:'Organizar área de montagem e saída',tag:'op',checked:false,checkedBy:null,checkedAt:null},
+  {id:16,profile:'expedicao',text:'Testar impressora de pedidos iFood',tag:'config',checked:false,checkedBy:null,checkedAt:null},
+  {id:17,profile:'expedicao',text:'Conferir entregadores disponíveis',tag:'op',checked:false,checkedBy:null,checkedAt:null},
+  {id:18,profile:'expedicao',text:'Checar embalagens térmicas e sacolas',tag:'op',checked:false,checkedBy:null,checkedAt:null},
+];
+const DU=[
+  {id:'u1',name:'Dono',password:'1234',role:'dono',color:'#7F77DD'},
+  {id:'u2',name:'Gerente',password:'1234',role:'gerente',color:'#378ADD'},
+  {id:'u3',name:'Caixa',password:'1234',role:'caixa',color:'#EF9F27'},
+  {id:'u4',name:'Expedicao',password:'1234',role:'expedicao',color:'#1D9E75'},
+];
+const ACCESS={dono:['dono','gerente','caixa','expedicao'],gerente:['gerente','caixa','expedicao'],caixa:['caixa','expedicao'],expedicao:['expedicao']};
+const TABS={dono:['checklist','dashboard','admin'],gerente:['checklist','dashboard'],caixa:['checklist'],expedicao:['checklist']};
+const PL={dono:'Dono',gerente:'Gerente',caixa:'Caixa',expedicao:'Expedição'};
+const PC={dono:'#7F77DD',gerente:'#378ADD',caixa:'#EF9F27',expedicao:'#1D9E75'};
+const PI={dono:'ti-crown',gerente:'ti-briefcase',caixa:'ti-cash',expedicao:'ti-package'};
+const RL={dono:'Dono',gerente:'Gerente',caixa:'Caixa',expedicao:'Expedição'};
+const RC={dono:'r-dono',gerente:'r-gerente',caixa:'r-caixa',expedicao:'r-expedicao'};
+const SO=['dono','gerente','caixa','expedicao'];
+const TL={urgent:'Urgente',config:'Config',op:'Operação',fin:'Financeiro'};
+const TC={urgent:'tag-urgent',config:'tag-config',op:'tag-op',fin:'tag-fin'};
+const RCOL={dono:'#7F77DD',gerente:'#378ADD',caixa:'#EF9F27',expedicao:'#1D9E75'};
+
+function ls(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}}
+function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+
+let tasks=ls(TK)||DT.map(t=>({...t}));
+let users=ls(UK)||DU.map(u=>({...u}));
+let activity=ls(AK)||[];
+let nTId=Math.max(...tasks.map(t=>t.id),99)+1;
+let nUId=Math.max(...users.map(u=>parseInt(u.id.replace('u',''))||0),9)+1;
+let cu=null,tab='checklist',prof=null,oForm=null;
+
+function save(){ss(TK,tasks);ss(UK,users);ss(AK,activity);}
+function nt(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});}
+function td(){return new Date().toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'2-digit'});}
+function root(){return document.getElementById('root');}
+
+function init(){renderLogin();}
+
+function renderLogin(){
+  root().innerHTML=`
+  <div class="login-wrap">
+    <div class="login-logo"><i class="ti ti-moped"></i></div>
+    <div class="login-title">Operação iFood</div>
+    <div class="login-sub">Entre com seu usuário e senha</div>
+    <div class="field"><label>Usuário</label><input id="lu" placeholder="Ex: Dono" onkeydown="if(event.key==='Enter')doLogin()" /></div>
+    <div class="field"><label>Senha</label><input id="lp" type="password" placeholder="••••" onkeydown="if(event.key==='Enter')doLogin()" /></div>
+    <button class="login-btn" onclick="doLogin()">Entrar</button>
+    <div class="login-err" id="lerr">Usuário ou senha incorretos.</div>
+  </div>`;}
+
+function doLogin(){
+  const n=document.getElementById('lu').value.trim(),p=document.getElementById('lp').value;
+  const u=users.find(x=>x.name.toLowerCase()===n.toLowerCase()&&x.password===p);
+  if(!u){document.getElementById('lerr').className='login-err show';return;}
+  cu=u;tab='checklist';prof=ACCESS[u.role][0];oForm=null;
+  renderApp();addAct(`${u.name} entrou no sistema`,u);}
+
+function logout(){if(cu)addAct(`${cu.name} saiu`,cu);cu=null;renderLogin();}
+function setTab(t){tab=t;oForm=null;renderApp();}
+function setProf(p){prof=p;oForm=null;renderApp();}
+function openForm(p){oForm=p;renderApp();setTimeout(()=>{const i=document.getElementById('fi-'+p);if(i)i.focus();},50);}
+function closeForm(){oForm=null;renderApp();}
+
+function renderApp(){
+  const tabs=TABS[cu.role];
+  const access=ACCESS[cu.role];
+  const visible=tasks.filter(t=>access.includes(t.profile));
+  const total=visible.length,done=visible.filter(t=>t.checked).length;
+  const pct=total===0?0:Math.round((done/total)*100);
+  let html=`
+  <div class="top-bar">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="top-logo"><i class="ti ti-moped"></i></div>
+      <div><div class="top-title">Operação iFood</div><div class="top-sub">${td()}</div></div>
+    </div>
+    <div class="user-chip">
+      <div class="chip-av" style="background:${cu.color}">${cu.name.charAt(0).toUpperCase()}</div>
+      <div><div class="chip-name">${cu.name}</div><div class="chip-role">${RL[cu.role]}</div></div>
+      <button class="chip-out" onclick="logout()"><i class="ti ti-logout"></i></button>
+    </div>
+  </div>
+  <div class="prog-card">
+    <div class="prog-top"><span class="prog-label">Progresso geral</span><span class="prog-pct">${pct}%</span></div>
+    <div class="prog-track"><div class="prog-fill${pct===100?' done':''}" style="width:${pct}%"></div></div>
+    <div class="prog-status ${pct===100?'ready':'pending'}">
+      <i class="ti ${pct===100?'ti-circle-check':'ti-alert-triangle'}"></i>
+      ${pct===100?'Pode abrir a loja!':total-done+' tarefa(s) pendente(s)'}
+    </div>
+  </div>
+  <div id="tab-content"></div>
+  <div class="bot-nav">`;
+  [{k:'checklist',icon:'ti-checklist',lbl:'Checklist'},{k:'dashboard',icon:'ti-chart-bar',lbl:'Dashboard'},{k:'admin',icon:'ti-users',lbl:'Usuários'}].forEach(t=>{
+    if(tabs.includes(t.k)) html+=`<button class="nav-btn${tab===t.k?' active':''}" onclick="setTab('${t.k}')"><i class="ti ${t.icon}"></i><span>${t.lbl}</span></button>`;
+  });
+  html+=`</div>`;
+  root().innerHTML=html;
+  if(tab==='checklist')renderChecklist();
+  else if(tab==='dashboard')renderDashboard();
+  else renderAdmin();}
+
+function renderChecklist(){
+  const access=ACCESS[cu.role];
+  const canEdit=cu.role==='dono'||cu.role==='gerente';
+  let html='';
+  if(access.length>1){
+    html+=`<div class="profile-scroll">`;
+    html+=`<div class="prof-chip${prof==='todos'?' active':''}" onclick="setProf('todos')"><i class="ti ti-layout-grid"></i> Todos</div>`;
+    access.forEach(p=>{html+=`<div class="prof-chip${prof===p?' active':''}" onclick="setProf('${p}')"><i class="ti ${PI[p]}"></i> ${PL[p]}</div>`;});
+    html+=`</div>`;
+  }
+  const show=(prof==='todos'||!access.includes(prof))?access:[prof];
+  show.forEach(p=>{
+    const pt=tasks.filter(t=>t.profile===p);
+    const dc=pt.filter(t=>t.checked).length;
+    html+=`<div class="section"><div class="sec-head"><span class="sec-title">${PL[p]}</span><span class="sec-badge">${dc}/${pt.length}</span></div>`;
+    pt.forEach(t=>{
+      html+=`<div class="task-card${t.checked?' checked':''}" onclick="toggleTask(${t.id})">
+        <div class="check-box"><i class="ti ti-check"></i></div>
+        <div class="task-body">
+          <div class="task-text">${t.text}</div>
+          ${t.checked&&t.checkedBy?`<div class="task-by"><i class="ti ti-user"></i>${t.checkedBy} · ${t.checkedAt}</div>`:''}
+        </div>
+        <div class="task-right">
+          <span class="tag ${TC[t.tag]}">${TL[t.tag]}</span>
+          ${canEdit?`<button class="del-btn" onclick="event.stopPropagation();delTask(${t.id})"><i class="ti ti-trash"></i></button>`:''}
+        </div>
+      </div>`;
+    });
+    if(canEdit){
+      const fo=oForm===p;
+      html+=`<button class="add-trigger" style="display:${fo?'none':'flex'}" onclick="openForm('${p}')"><i class="ti ti-plus"></i> Adicionar tarefa</button>`;
+      html+=`<div class="add-form${fo?' open':''}">
+        <input class="add-input" id="fi-${p}" placeholder="Descreva a tarefa..." onkeydown="hkey(event,'${p}')" />
+        <div class="add-row">
+          <select class="add-select" id="ft-${p}">
+            <option value="urgent">Urgente</option><option value="config">Config</option><option value="op">Operação</option><option value="fin">Financeiro</option>
+          </select>
+          <button class="btn-cancel" onclick="closeForm()">Cancelar</button>
+          <button class="btn-add" onclick="confirmAdd('${p}')">Adicionar</button>
+        </div>
+      </div>`;
+    }
+    html+=`</div>`;
+  });
+  if(canEdit)html+=`<div class="reset-row"><button class="reset-btn" onclick="resetAll()"><i class="ti ti-restore"></i> Resetar todos os checks</button></div>`;
+  document.getElementById('tab-content').innerHTML=html;}
+
+function renderDashboard(){
+  const total=tasks.length,done=tasks.filter(t=>t.checked).length,pct=total===0?0:Math.round((done/total)*100);
+  let html=`<div class="dash-pad">`;
+  html+=`<div class="metric-row">
+    <div class="metric-card"><div class="metric-label">Concluídas</div><div class="metric-val green">${done}</div></div>
+    <div class="metric-card"><div class="metric-label">Pendentes</div><div class="metric-val${total-done>0?' red':''}">${total-done}</div></div>
+    <div class="metric-card"><div class="metric-label">Total</div><div class="metric-val">${total}</div></div>
+    <div class="metric-card"><div class="metric-label">Conclusão</div><div class="metric-val${pct===100?' green':''}">${pct}%</div></div>
+  </div>`;
+  html+=`<div class="sec-head" style="margin-bottom:10px"><span class="sec-title">Por perfil</span></div>`;
+  SO.forEach(p=>{
+    const pt=tasks.filter(t=>t.profile===p),dc=pt.filter(t=>t.checked).length;
+    const pp=pt.length===0?0:Math.round((dc/pt.length)*100),col=PC[p];
+    let bCls='badge-part',bTxt=pp+'%';
+    if(pp===100){bCls='badge-ok';bTxt='Completo';}else if(pp===0){bCls='badge-pend';bTxt='Pendente';}
+    html+=`<div class="prof-stat-card"><div class="ps-head"><div class="ps-icon" style="background:${col}22"><i class="ti ${PI[p]}" style="color:${col}"></i></div><span class="ps-name">${PL[p]}</span><span class="ps-badge ${bCls}">${bTxt}</span></div><div class="ps-track"><div class="ps-fill" style="width:${pp}%;background:${col}"></div></div><div class="ps-count"><span>${dc}</span> de <span>${pt.length}</span> tarefas concluídas</div></div>`;
+  });
+  if(activity.length>0){
+    html+=`<div class="sec-head" style="margin:4px 0 10px"><span class="sec-title">Atividade recente</span></div>`;
+    activity.slice(0,10).forEach(a=>{html+=`<div class="act-item"><div class="act-dot" style="background:${a.color}"></div><div class="act-body"><div class="act-text">${a.text}</div><div class="act-meta">${a.date} · ${a.time}</div></div><span class="act-who who-${a.role}">${a.who}</span></div>`;});
+  }
+  html+=`<button class="snap-btn" onclick="saveSnap()"><i class="ti ti-device-floppy"></i> Salvar snapshot do dia</button></div>`;
+  document.getElementById('tab-content').innerHTML=html;}
+
+function renderAdmin(){
+  let html=`<div class="admin-pad"><div class="sec-head" style="margin-bottom:10px"><span class="sec-title">Usuários</span><span class="sec-badge">${users.length}</span></div>`;
+  users.forEach(u=>{
+    html+=`<div class="user-card"><div class="u-av" style="background:${u.color}">${u.name.charAt(0).toUpperCase()}</div><div class="u-info"><div class="u-name">${u.name}</div><div class="u-sub">Senha: ${'•'.repeat(u.password.length)}</div></div><span class="u-role ${RC[u.role]}">${RL[u.role]}</span>${u.id!=='u1'?`<button class="u-del" onclick="delUser('${u.id}')"><i class="ti ti-trash"></i></button>`:''}</div>`;
+  });
+  html+=`<div class="sec-head" style="margin:16px 0 10px"><span class="sec-title">Adicionar usuário</span></div>
+  <div class="new-user-form">
+    <div class="form-grid">
+      <div class="field" style="margin:0"><label>Nome</label><input class="add-input" id="un" placeholder="Nome" /></div>
+      <div class="field" style="margin:0"><label>Senha</label><input class="add-input" id="up" type="password" placeholder="Senha" /></div>
+    </div>
+    <div class="field" style="margin:10px 0 14px"><label>Perfil</label>
+      <select class="add-select" id="ur" style="width:100%">
+        <option value="gerente">Gerente</option>
+        <option value="caixa">Caixa</option>
+        <option value="expedicao">Expedição</option>
+      </select>
+    </div>
+    <button class="btn-add" style="width:100%;padding:14px" onclick="addUser()"><i class="ti ti-user-plus"></i> Cadastrar</button>
+  </div></div>`;
+  document.getElementById('tab-content').innerHTML=html;}
+
+function hkey(e,p){if(e.key==='Enter')confirmAdd(p);if(e.key==='Escape')closeForm();}
+
+function toggleTask(id){
+  const t=tasks.find(x=>x.id===id);if(!t)return;
+  t.checked=!t.checked;t.checkedBy=t.checked?cu.name:null;t.checkedAt=t.checked?nt():null;
+  save();renderApp();if(t.checked)addAct(`Concluiu: "${t.text}"`,cu);}
+
+function delTask(id){
+  if(!confirm('Excluir esta tarefa?'))return;
+  tasks=tasks.filter(x=>x.id!==id);save();renderApp();}
+
+function confirmAdd(p){
+  const inp=document.getElementById('fi-'+p),sel=document.getElementById('ft-'+p);
+  const text=inp?inp.value.trim():'';if(!text)return;
+  tasks.push({id:nTId++,profile:p,text,tag:sel.value,checked:false,checkedBy:null,checkedAt:null});
+  oForm=null;save();renderApp();}
+
+function resetAll(){
+  if(!confirm('Resetar todos os checks?'))return;
+  tasks=tasks.map(t=>({...t,checked:false,checkedBy:null,checkedAt:null}));
+  save();renderApp();addAct('Resetou todos os checks',cu);}
+
+function addUser(){
+  const n=document.getElementById('un').value.trim(),p=document.getElementById('up').value,r=document.getElementById('ur').value;
+  if(!n||!p){alert('Preencha nome e senha.');return;}
+  if(users.find(u=>u.name.toLowerCase()===n.toLowerCase())){alert('Usuário já existe.');return;}
+  users.push({id:'u'+nUId++,name:n,password:p,role:r,color:RCOL[r]});
+  save();addAct(`Cadastrou: ${n} (${RL[r]})`,cu);renderApp();}
+
+function delUser(id){
+  const u=users.find(x=>x.id===id);
+  if(!u||!confirm(`Remover "${u.name}"?`))return;
+  users=users.filter(x=>x.id!==id);save();addAct(`Removeu: ${u.name}`,cu);renderApp();}
+
+function addAct(text,user){
+  activity.unshift({text,who:user.name,role:user.role,color:user.color,time:nt(),date:td()});
+  if(activity.length>50)activity=activity.slice(0,50);save();}
+
+function saveSnap(){
+  addAct('Salvou snapshot do dia',cu);
+  alert('Snapshot salvo!');renderDashboard();}
+
+init();
+</script>
+</body>
+</html>
