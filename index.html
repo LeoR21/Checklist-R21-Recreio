@@ -11,28 +11,20 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f5f5;color:#1a1a1a;min-height:100vh;}
 .app{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;position:relative;padding-bottom:70px;}
-
-/* HEADER */
 .top-bar{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 12px;background:#fff;border-bottom:1px solid #f0f0f0;}
 .top-logo{width:38px;height:38px;background:#EA1D2C;border-radius:10px;display:flex;align-items:center;justify-content:center;}
 .top-logo i{color:#fff;font-size:20px;}
 .top-title{font-size:17px;font-weight:600;color:#1a1a1a;}
 .top-sub{font-size:12px;color:#888;margin-top:1px;}
-
-/* USER CHIP */
 .user-chip{display:flex;align-items:center;gap:7px;background:#f5f5f5;border:1px solid #e8e8e8;border-radius:24px;padding:5px 10px 5px 5px;}
 .chip-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;}
 .chip-name{font-size:13px;font-weight:600;color:#1a1a1a;}
 .chip-role{font-size:11px;color:#888;}
 .chip-out{background:none;border:none;color:#aaa;cursor:pointer;padding:2px;margin-left:2px;font-size:17px;line-height:1;}
-
-/* SYNC */
-.sync-pill{display:flex;align-items:center;gap:6px;font-size:12px;padding:8px 14px;margin:10px 16px 0;border-radius:24px;background:#fff3cd;color:#856404;border:1px solid #ffc107;}
-.sync-pill.ok{background:#d1e7dd;color:#0f5132;border-color:#badbcc;}
-.sync-pill.error{background:#f8d7da;color:#842029;border-color:#f5c2c7;}
-.sync-pill i{font-size:14px;}
-
-/* PROGRESS */
+.sync-bar{display:flex;align-items:center;gap:6px;font-size:12px;padding:8px 14px;margin:10px 16px 0;border-radius:24px;background:#fff3cd;color:#856404;border:1px solid #ffc107;}
+.sync-bar.ok{background:#d1e7dd;color:#0f5132;border-color:#badbcc;}
+.sync-bar.error{background:#f8d7da;color:#842029;border-color:#f5c2c7;}
+.sync-bar i{font-size:14px;}
 .prog-card{margin:12px 16px;background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:16px;}
 .prog-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
 .prog-label{font-size:13px;color:#888;}
@@ -44,33 +36,35 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .prog-status.ready{color:#1D9E75;}
 .prog-status.pending{color:#EA1D2C;}
 .prog-status i{font-size:16px;}
-
-/* BOTTOM NAV */
 .bot-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;display:flex;background:#fff;border-top:1px solid #f0f0f0;z-index:100;padding-bottom:env(safe-area-inset-bottom);}
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0 8px;background:none;border:none;cursor:pointer;color:#aaa;font-size:11px;}
 .nav-btn i{font-size:24px;}
 .nav-btn.active{color:#EA1D2C;}
 .nav-btn span{font-weight:500;}
-
-/* PROFILE TABS */
-.profile-scroll{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.day-scroll{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.day-scroll::-webkit-scrollbar{display:none;}
+.day-chip{display:flex;flex-direction:column;align-items:center;padding:8px 14px;border-radius:14px;border:1.5px solid #e8e8e8;background:#fff;color:#666;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;flex-shrink:0;min-width:58px;}
+.day-chip .day-name{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
+.day-chip .day-num{font-size:18px;font-weight:700;margin:2px 0;}
+.day-chip .day-dot{width:6px;height:6px;border-radius:50%;background:#e8e8e8;margin-top:2px;}
+.day-chip.active{background:#EA1D2C;color:#fff;border-color:#EA1D2C;}
+.day-chip.active .day-dot{background:rgba(255,255,255,0.6);}
+.day-chip.has-tasks .day-dot{background:#1D9E75;}
+.day-chip.active.has-tasks .day-dot{background:#fff;}
+.profile-scroll{display:flex;gap:8px;padding:4px 16px 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .profile-scroll::-webkit-scrollbar{display:none;}
-.prof-chip{display:flex;align-items:center;gap:6px;padding:9px 16px;border-radius:24px;border:1.5px solid #e8e8e8;background:#fff;color:#666;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap;flex-shrink:0;}
-.prof-chip i{font-size:16px;}
+.prof-chip{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:24px;border:1.5px solid #e8e8e8;background:#fff;color:#666;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.prof-chip i{font-size:15px;}
 .prof-chip.active{background:#EA1D2C;color:#fff;border-color:#EA1D2C;}
-
-/* SECTIONS */
 .section{padding:0 16px;margin-bottom:20px;}
 .sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
 .sec-title{font-size:12px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.06em;}
 .sec-badge{font-size:12px;background:#f5f5f5;color:#888;padding:3px 10px;border-radius:10px;border:1px solid #e8e8e8;}
-
-/* TASK CARD */
-.task-card{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #f0f0f0;border-radius:14px;padding:14px;margin-bottom:8px;cursor:pointer;transition:background .1s;}
+.task-card{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #f0f0f0;border-radius:14px;padding:14px;margin-bottom:8px;cursor:pointer;}
 .task-card:active{background:#fafafa;}
 .task-card.checked{opacity:.55;}
 .task-card.checked .task-text{text-decoration:line-through;color:#aaa;}
-.check-box{width:28px;height:28px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
+.check-box{width:28px;height:28px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .task-card.checked .check-box{background:#1D9E75;border-color:#1D9E75;}
 .task-card.checked .check-box i{color:#fff;}
 .check-box i{color:transparent;font-size:15px;}
@@ -86,26 +80,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .tag-fin{background:#FAEEDA;color:#854F0B;}
 .del-btn{background:none;border:none;color:#ccc;font-size:22px;cursor:pointer;padding:2px;line-height:1;}
 .del-btn:active{color:#EA1D2C;}
-
-/* ADD TASK */
 .add-trigger{display:flex;align-items:center;gap:10px;padding:14px;border:1.5px dashed #ddd;border-radius:14px;color:#aaa;font-size:14px;cursor:pointer;background:none;width:100%;margin-top:4px;}
 .add-trigger i{font-size:20px;}
 .add-form{background:#f9f9f9;border:1px solid #e8e8e8;border-radius:14px;padding:14px;margin-top:4px;display:none;flex-direction:column;gap:10px;}
 .add-form.open{display:flex;}
 .add-input{width:100%;padding:12px 14px;border:1.5px solid #ddd;border-radius:10px;font-size:15px;background:#fff;color:#1a1a1a;outline:none;}
 .add-input:focus{border-color:#EA1D2C;}
-.add-row{display:flex;gap:8px;align-items:center;}
-.add-select{flex:1;padding:11px 12px;border:1.5px solid #ddd;border-radius:10px;font-size:14px;background:#fff;color:#1a1a1a;outline:none;}
+.add-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.add-select{flex:1;min-width:100px;padding:11px 12px;border:1.5px solid #ddd;border-radius:10px;font-size:14px;background:#fff;color:#1a1a1a;outline:none;}
 .btn-add{padding:11px 18px;background:#EA1D2C;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;}
 .btn-cancel{padding:11px 14px;background:#fff;border:1.5px solid #ddd;border-radius:10px;font-size:14px;color:#888;cursor:pointer;}
-
-/* RESET */
 .reset-row{padding:0 16px 12px;}
 .reset-btn{width:100%;padding:14px;background:#fff;border:1.5px solid #e8e8e8;border-radius:14px;font-size:14px;color:#888;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:500;}
 .reset-btn i{font-size:18px;}
-.reset-btn:active{background:#f5f5f5;}
-
-/* LOGIN */
 .login-wrap{padding:40px 20px;}
 .login-logo{width:64px;height:64px;background:#EA1D2C;border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
 .login-logo i{color:#fff;font-size:32px;}
@@ -116,11 +103,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .field input{width:100%;padding:14px;border:1.5px solid #e8e8e8;border-radius:12px;font-size:16px;background:#fff;color:#1a1a1a;outline:none;}
 .field input:focus{border-color:#EA1D2C;}
 .login-btn{width:100%;padding:15px;background:#EA1D2C;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:6px;}
-.login-btn:active{background:#c4111e;}
 .login-err{font-size:13px;color:#842029;background:#f8d7da;border:1px solid #f5c2c7;border-radius:10px;padding:10px 14px;margin-top:12px;display:none;}
 .login-err.show{display:block;}
-
-/* DASHBOARD */
 .dash-pad{padding:0 16px;}
 .metric-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
 .metric-card{background:#f9f9f9;border-radius:14px;padding:16px;}
@@ -128,6 +112,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .metric-val{font-size:28px;font-weight:700;color:#1a1a1a;}
 .metric-val.green{color:#1D9E75;}
 .metric-val.red{color:#EA1D2C;}
+.pizza-card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:16px;margin-bottom:14px;}
+.chart-title{font-size:12px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;}
+.pizza-wrap{display:flex;align-items:center;gap:20px;}
+.pizza-legend{display:flex;flex-direction:column;gap:10px;flex:1;}
+.legend-item{display:flex;align-items:center;gap:8px;}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.legend-label{font-size:13px;color:#555;flex:1;}
+.legend-val{font-size:13px;font-weight:700;color:#1a1a1a;}
+.legend-pct{font-size:12px;color:#aaa;}
+.bar-chart-card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:16px;margin-bottom:14px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.bar-day{font-size:12px;font-weight:600;color:#888;width:28px;flex-shrink:0;}
+.bar-track{flex:1;height:20px;background:#f5f5f5;border-radius:6px;overflow:hidden;position:relative;}
+.bar-fill{height:100%;border-radius:6px;transition:width 0.4s;display:flex;align-items:center;padding-left:8px;}
+.bar-fill span{font-size:11px;font-weight:600;color:#fff;}
+.bar-pct{font-size:12px;color:#888;width:34px;text-align:right;flex-shrink:0;}
+.week-compare{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:16px;margin-bottom:14px;}
+.compare-row{display:flex;gap:10px;margin-bottom:10px;}
+.compare-card{flex:1;background:#f9f9f9;border-radius:12px;padding:12px;text-align:center;}
+.compare-label{font-size:11px;color:#aaa;margin-bottom:4px;}
+.compare-val{font-size:22px;font-weight:700;color:#1a1a1a;}
+.compare-sub{font-size:11px;color:#aaa;margin-top:2px;}
+.compare-diff{display:flex;align-items:center;justify-content:center;gap:4px;font-size:13px;font-weight:600;margin-top:8px;}
+.compare-diff.up{color:#1D9E75;}
+.compare-diff.down{color:#EA1D2C;}
+.compare-diff.same{color:#888;}
 .prof-stat-card{background:#fff;border:1px solid #f0f0f0;border-radius:14px;padding:14px;margin-bottom:10px;}
 .ps-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 .ps-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
@@ -152,10 +162,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .who-caixa{background:#FAEEDA;color:#854F0B;}
 .who-expedicao{background:#EAF3DE;color:#3B6D11;}
 .snap-btn{width:100%;padding:14px;background:#fff;border:1.5px solid #e8e8e8;border-radius:14px;font-size:14px;color:#888;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px;font-weight:500;}
-.snap-btn i{font-size:18px;}
-.snap-btn:active{background:#f5f5f5;}
-
-/* ADMIN */
 .admin-pad{padding:0 16px 20px;}
 .user-card{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #f0f0f0;border-radius:14px;padding:14px;margin-bottom:8px;}
 .u-av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0;}
@@ -168,41 +174,118 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .r-caixa{background:#FAEEDA;color:#854F0B;}
 .r-expedicao{background:#EAF3DE;color:#3B6D11;}
 .u-del{background:none;border:none;color:#ccc;font-size:22px;cursor:pointer;padding:4px;line-height:1;}
-.u-del:active{color:#EA1D2C;}
 .new-user-form{background:#f9f9f9;border:1px solid #e8e8e8;border-radius:14px;padding:16px;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:16px;color:#888;}
+.spinner{width:36px;height:36px;border:3px solid #f0f0f0;border-top-color:#EA1D2C;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
 </style>
 </head>
 <body>
 <div class="app"><div id="root"></div></div>
-<script>
-const TK='ifood_app_tasks',UK='ifood_app_users',AK='ifood_app_activity';
-const DT=[
-  {id:1,profile:'dono',text:'Verificar saldo para repasse iFood',tag:'fin',checked:false,checkedBy:null,checkedAt:null},
-  {id:2,profile:'dono',text:'Confirmar horário de abertura no app',tag:'config',checked:false,checkedBy:null,checkedAt:null},
-  {id:3,profile:'dono',text:'Responder avaliações negativas',tag:'op',checked:false,checkedBy:null,checkedAt:null},
-  {id:4,profile:'dono',text:'Verificar campanhas e promoções ativas',tag:'config',checked:false,checkedBy:null,checkedAt:null},
-  {id:5,profile:'gerente',text:'Checar estoque dos itens mais vendidos',tag:'op',checked:false,checkedBy:null,checkedAt:null},
-  {id:6,profile:'gerente',text:'Confirmar escala e presença da equipe',tag:'urgent',checked:false,checkedBy:null,checkedAt:null},
-  {id:7,profile:'gerente',text:'Testar tablet iFood — internet ok',tag:'config',checked:false,checkedBy:null,checkedAt:null},
-  {id:8,profile:'gerente',text:'Verificar cardápio e preços',tag:'config',checked:false,checkedBy:null,checkedAt:null},
-  {id:9,profile:'gerente',text:'Conferir embalagens (caixas, sacos, lacres)',tag:'op',checked:false,checkedBy:null,checkedAt:null},
-  {id:10,profile:'caixa',text:'Conferir fundo de caixa inicial',tag:'fin',checked:false,checkedBy:null,checkedAt:null},
-  {id:11,profile:'caixa',text:'Verificar maquininha de cartão',tag:'urgent',checked:false,checkedBy:null,checkedAt:null},
-  {id:12,profile:'caixa',text:'Registrar pedidos pendentes do dia anterior',tag:'fin',checked:false,checkedBy:null,checkedAt:null},
-  {id:13,profile:'caixa',text:'Confirmar integrações de pagamento iFood',tag:'config',checked:false,checkedBy:null,checkedAt:null},
-  {id:14,profile:'expedicao',text:'Verificar temperatura dos equipamentos',tag:'urgent',checked:false,checkedBy:null,checkedAt:null},
-  {id:15,profile:'expedicao',text:'Organizar área de montagem e saída',tag:'op',checked:false,checkedBy:null,checkedAt:null},
-  {id:16,profile:'expedicao',text:'Testar impressora de pedidos iFood',tag:'config',checked:false,checkedBy:null,checkedAt:null},
-  {id:17,profile:'expedicao',text:'Conferir entregadores disponíveis',tag:'op',checked:false,checkedBy:null,checkedAt:null},
-  {id:18,profile:'expedicao',text:'Checar embalagens térmicas e sacolas',tag:'op',checked:false,checkedBy:null,checkedAt:null},
-];
-const DU=[
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, onSnapshot, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDL1XLLKXQ_IRbt2GLmXYrW82mfoBKgKxc",
+  authDomain: "ifood-checklist.firebaseapp.com",
+  projectId: "ifood-checklist",
+  storageBucket: "ifood-checklist.firebasestorage.app",
+  messagingSenderId: "800137821106",
+  appId: "1:800137821106:web:ad3ef719bf2104392cc2ab",
+  measurementId: "G-Z82ERV4XC4"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ─── DEFAULTS ───────────────────────────────────────────────
+const DAYS = ['seg','ter','qua','qui','sex','sab','dom'];
+const DAY_LABELS = {seg:'Seg',ter:'Ter',qua:'Qua',qui:'Qui',sex:'Sex',sab:'Sáb',dom:'Dom'};
+const DAY_FULL = {seg:'Segunda',ter:'Terça',qua:'Quarta',qui:'Quinta',sex:'Sexta',sab:'Sábado',dom:'Domingo'};
+
+const DEFAULT_TASKS = {
+  seg:[
+    {id:'s1',profile:'dono',text:'Verificar saldo para repasse iFood',tag:'fin'},
+    {id:'s2',profile:'dono',text:'Confirmar horário de abertura',tag:'config'},
+    {id:'s3',profile:'gerente',text:'Reunião de alinhamento semanal',tag:'op'},
+    {id:'s4',profile:'gerente',text:'Checar estoque — início da semana',tag:'op'},
+    {id:'s5',profile:'caixa',text:'Conferir fundo de caixa inicial',tag:'fin'},
+    {id:'s6',profile:'caixa',text:'Verificar maquininha de cartão',tag:'urgent'},
+    {id:'s7',profile:'expedicao',text:'Verificar temperatura dos equipamentos',tag:'urgent'},
+    {id:'s8',profile:'expedicao',text:'Testar impressora de pedidos',tag:'config'},
+  ],
+  ter:[
+    {id:'t1',profile:'dono',text:'Revisar avaliações negativas',tag:'op'},
+    {id:'t2',profile:'dono',text:'Verificar campanhas ativas',tag:'config'},
+    {id:'t3',profile:'gerente',text:'Confirmar escala da equipe',tag:'urgent'},
+    {id:'t4',profile:'gerente',text:'Conferir embalagens (caixas, sacos, lacres)',tag:'op'},
+    {id:'t5',profile:'caixa',text:'Registrar pedidos pendentes',tag:'fin'},
+    {id:'t6',profile:'caixa',text:'Confirmar integrações de pagamento',tag:'config'},
+    {id:'t7',profile:'expedicao',text:'Organizar área de montagem',tag:'op'},
+    {id:'t8',profile:'expedicao',text:'Conferir entregadores disponíveis',tag:'op'},
+  ],
+  qua:[
+    {id:'q1',profile:'dono',text:'Verificar saldo para repasse iFood',tag:'fin'},
+    {id:'q2',profile:'dono',text:'Analisar relatório de pedidos',tag:'op'},
+    {id:'q3',profile:'gerente',text:'Testar tablet iFood — internet ok',tag:'config'},
+    {id:'q4',profile:'gerente',text:'Verificar cardápio e preços',tag:'config'},
+    {id:'q5',profile:'caixa',text:'Conferir fundo de caixa inicial',tag:'fin'},
+    {id:'q6',profile:'caixa',text:'Verificar maquininha de cartão',tag:'urgent'},
+    {id:'q7',profile:'expedicao',text:'Verificar temperatura dos equipamentos',tag:'urgent'},
+    {id:'q8',profile:'expedicao',text:'Checar embalagens térmicas e sacolas',tag:'op'},
+  ],
+  qui:[
+    {id:'qi1',profile:'dono',text:'Revisar avaliações e responder',tag:'op'},
+    {id:'qi2',profile:'dono',text:'Verificar promoções do fim de semana',tag:'config'},
+    {id:'qi3',profile:'gerente',text:'Checar estoque — pré fim de semana',tag:'urgent'},
+    {id:'qi4',profile:'gerente',text:'Confirmar escala do fim de semana',tag:'urgent'},
+    {id:'qi5',profile:'caixa',text:'Registrar pedidos pendentes',tag:'fin'},
+    {id:'qi6',profile:'caixa',text:'Conferir fundo de caixa',tag:'fin'},
+    {id:'qi7',profile:'expedicao',text:'Organizar área de montagem',tag:'op'},
+    {id:'qi8',profile:'expedicao',text:'Conferir entregadores disponíveis',tag:'op'},
+  ],
+  sex:[
+    {id:'f1',profile:'dono',text:'Verificar saldo para repasse iFood',tag:'fin'},
+    {id:'f2',profile:'dono',text:'Ativar promoções de fim de semana',tag:'config'},
+    {id:'f3',profile:'gerente',text:'Conferir todo o estoque',tag:'urgent'},
+    {id:'f4',profile:'gerente',text:'Verificar cardápio e preços',tag:'config'},
+    {id:'f5',profile:'caixa',text:'Conferir fundo de caixa reforçado',tag:'fin'},
+    {id:'f6',profile:'caixa',text:'Verificar maquininha de cartão',tag:'urgent'},
+    {id:'f7',profile:'expedicao',text:'Verificar temperatura dos equipamentos',tag:'urgent'},
+    {id:'f8',profile:'expedicao',text:'Testar impressora de pedidos',tag:'config'},
+  ],
+  sab:[
+    {id:'sa1',profile:'dono',text:'Confirmar horário especial de sábado',tag:'config'},
+    {id:'sa2',profile:'dono',text:'Verificar campanhas do fim de semana',tag:'config'},
+    {id:'sa3',profile:'gerente',text:'Checar estoque completo',tag:'urgent'},
+    {id:'sa4',profile:'gerente',text:'Confirmar toda a equipe presente',tag:'urgent'},
+    {id:'sa5',profile:'caixa',text:'Conferir fundo de caixa reforçado',tag:'fin'},
+    {id:'sa6',profile:'caixa',text:'Verificar maquininha de cartão',tag:'urgent'},
+    {id:'sa7',profile:'expedicao',text:'Verificar temperatura dos equipamentos',tag:'urgent'},
+    {id:'sa8',profile:'expedicao',text:'Checar embalagens térmicas extras',tag:'op'},
+  ],
+  dom:[
+    {id:'d1',profile:'dono',text:'Confirmar horário especial de domingo',tag:'config'},
+    {id:'d2',profile:'dono',text:'Revisar avaliações da semana',tag:'op'},
+    {id:'d3',profile:'gerente',text:'Verificar estoque para a semana',tag:'op'},
+    {id:'d4',profile:'gerente',text:'Confirmar escala da semana seguinte',tag:'op'},
+    {id:'d5',profile:'caixa',text:'Conferir fundo de caixa',tag:'fin'},
+    {id:'d6',profile:'caixa',text:'Verificar maquininha de cartão',tag:'urgent'},
+    {id:'d7',profile:'expedicao',text:'Verificar temperatura dos equipamentos',tag:'urgent'},
+    {id:'d8',profile:'expedicao',text:'Organizar área de montagem',tag:'op'},
+  ],
+};
+
+const DEFAULT_USERS = [
   {id:'u1',name:'Dono',password:'1234',role:'dono',color:'#7F77DD'},
   {id:'u2',name:'Gerente',password:'1234',role:'gerente',color:'#378ADD'},
   {id:'u3',name:'Caixa',password:'1234',role:'caixa',color:'#EF9F27'},
   {id:'u4',name:'Expedicao',password:'1234',role:'expedicao',color:'#1D9E75'},
 ];
+
 const ACCESS={dono:['dono','gerente','caixa','expedicao'],gerente:['gerente','caixa','expedicao'],caixa:['caixa','expedicao'],expedicao:['expedicao']};
 const TABS={dono:['checklist','dashboard','admin'],gerente:['checklist','dashboard'],caixa:['checklist'],expedicao:['checklist']};
 const PL={dono:'Dono',gerente:'Gerente',caixa:'Caixa',expedicao:'Expedição'};
@@ -210,59 +293,131 @@ const PC={dono:'#7F77DD',gerente:'#378ADD',caixa:'#EF9F27',expedicao:'#1D9E75'};
 const PI={dono:'ti-crown',gerente:'ti-briefcase',caixa:'ti-cash',expedicao:'ti-package'};
 const RL={dono:'Dono',gerente:'Gerente',caixa:'Caixa',expedicao:'Expedição'};
 const RC={dono:'r-dono',gerente:'r-gerente',caixa:'r-caixa',expedicao:'r-expedicao'};
+const RCOL={dono:'#7F77DD',gerente:'#378ADD',caixa:'#EF9F27',expedicao:'#1D9E75'};
 const SO=['dono','gerente','caixa','expedicao'];
 const TL={urgent:'Urgente',config:'Config',op:'Operação',fin:'Financeiro'};
 const TC={urgent:'tag-urgent',config:'tag-config',op:'tag-op',fin:'tag-fin'};
-const RCOL={dono:'#7F77DD',gerente:'#378ADD',caixa:'#EF9F27',expedicao:'#1D9E75'};
+const DAY_COLORS=['#EA1D2C','#378ADD','#EF9F27','#1D9E75','#7F77DD','#E87040','#888'];
 
-function ls(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}}
-function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+// ─── STATE ──────────────────────────────────────────────────
+let cu=null, tab='checklist', prof=null, oForm=null;
+let currentDay = todayDayKey();
+let taskDefs = JSON.parse(JSON.stringify(DEFAULT_TASKS));
+let checks = {}; // checks[dateKey][taskId] = {checked, checkedBy, checkedAt}
+let users = DEFAULT_USERS.map(u=>({...u}));
+let activity = [];
+let history = {}; // history[dateKey] = {total, done, date}
+let unsubChecks = null;
 
-let tasks=ls(TK)||DT.map(t=>({...t}));
-let users=ls(UK)||DU.map(u=>({...u}));
-let activity=ls(AK)||[];
-let nTId=Math.max(...tasks.map(t=>t.id),99)+1;
-let nUId=Math.max(...users.map(u=>parseInt(u.id.replace('u',''))||0),9)+1;
-let cu=null,tab='checklist',prof=null,oForm=null;
-
-function save(){ss(TK,tasks);ss(UK,users);ss(AK,activity);}
+function todayDayKey(){
+  const d = new Date().getDay(); // 0=sun
+  return ['dom','seg','ter','qua','qui','sex','sab'][d];
+}
+function todayDateKey(){
+  const d=new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
 function nt(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});}
 function td(){return new Date().toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'2-digit'});}
 function root(){return document.getElementById('root');}
 
-function init(){renderLogin();}
+function setSyncBar(state,msg){
+  const b=document.getElementById('sync-bar');
+  if(!b)return;
+  const ic={ok:'ti-cloud-check',loading:'ti-cloud',error:'ti-cloud-off'};
+  b.className='sync-bar '+state;
+  b.innerHTML=`<i class="ti ${ic[state]}"></i> ${msg}`;
+  b.style.display='flex';
+  if(state==='ok') setTimeout(()=>{if(b)b.style.display='none';},2000);
+}
 
+// ─── FIREBASE OPS ────────────────────────────────────────────
+async function fbLoad(){
+  try {
+    const [tdR,usR,acR,hiR] = await Promise.all([
+      getDoc(doc(db,'app','taskDefs')),
+      getDoc(doc(db,'app','users')),
+      getDoc(doc(db,'app','activity')),
+      getDoc(doc(db,'app','history')),
+    ]);
+    if(tdR.exists()) taskDefs=tdR.data().data;
+    else await setDoc(doc(db,'app','taskDefs'),{data:taskDefs});
+    if(usR.exists()) users=usR.data().data;
+    else await setDoc(doc(db,'app','users'),{data:users});
+    if(acR.exists()) activity=acR.data().data||[];
+    if(hiR.exists()) history=hiR.data().data||{};
+    // subscribe to checks for today
+    subscribeChecks(todayDateKey());
+  } catch(e){
+    console.error(e);
+    setSyncBar('error','Erro ao conectar. Verifique as regras do Firestore.');
+  }
+}
+
+function subscribeChecks(dateKey){
+  if(unsubChecks) unsubChecks();
+  unsubChecks = onSnapshot(doc(db,'checks',dateKey),(snap)=>{
+    checks[dateKey] = snap.exists() ? snap.data() : {};
+    if(cu) renderContent();
+  });
+}
+
+async function fbSave(docPath, data){
+  setSyncBar('loading','Salvando...');
+  try{
+    const parts=docPath.split('/');
+    await setDoc(doc(db,parts[0],parts[1]),data);
+    setSyncBar('ok','Salvo');
+  }catch(e){setSyncBar('error','Erro ao salvar');}
+}
+
+async function saveChecks(dateKey){
+  await fbSave(`checks/${dateKey}`, checks[dateKey]||{});
+  // update history
+  const dayTasks = taskDefs[currentDay]||[];
+  const total = dayTasks.length;
+  const done = dayTasks.filter(t=>(checks[dateKey]||{})[t.id]?.checked).length;
+  history[dateKey]={total,done,date:td(),dayKey:currentDay};
+  await fbSave('app/history',{data:history});
+}
+
+// ─── AUTH ────────────────────────────────────────────────────
 function renderLogin(){
   root().innerHTML=`
   <div class="login-wrap">
     <div class="login-logo"><i class="ti ti-moped"></i></div>
     <div class="login-title">Operação iFood</div>
     <div class="login-sub">Entre com seu usuário e senha</div>
-    <div class="field"><label>Usuário</label><input id="lu" placeholder="Ex: Dono" onkeydown="if(event.key==='Enter')doLogin()" /></div>
-    <div class="field"><label>Senha</label><input id="lp" type="password" placeholder="••••" onkeydown="if(event.key==='Enter')doLogin()" /></div>
-    <button class="login-btn" onclick="doLogin()">Entrar</button>
+    <div class="field"><label>Usuário</label><input id="lu" placeholder="Ex: Dono" onkeydown="if(event.key==='Enter')window._login()" /></div>
+    <div class="field"><label>Senha</label><input id="lp" type="password" placeholder="••••" onkeydown="if(event.key==='Enter')window._login()" /></div>
+    <button class="login-btn" onclick="window._login()">Entrar</button>
     <div class="login-err" id="lerr">Usuário ou senha incorretos.</div>
-  </div>`;}
+  </div>`;
+}
 
-function doLogin(){
+window._login = function(){
   const n=document.getElementById('lu').value.trim(),p=document.getElementById('lp').value;
   const u=users.find(x=>x.name.toLowerCase()===n.toLowerCase()&&x.password===p);
   if(!u){document.getElementById('lerr').className='login-err show';return;}
-  cu=u;tab='checklist';prof=ACCESS[u.role][0];oForm=null;
-  renderApp();addAct(`${u.name} entrou no sistema`,u);}
+  cu=u; tab='checklist'; prof=ACCESS[u.role][0]; oForm=null;
+  renderApp(); addAct(`${u.name} entrou no sistema`,u);
+};
 
-function logout(){if(cu)addAct(`${cu.name} saiu`,cu);cu=null;renderLogin();}
-function setTab(t){tab=t;oForm=null;renderApp();}
-function setProf(p){prof=p;oForm=null;renderApp();}
-function openForm(p){oForm=p;renderApp();setTimeout(()=>{const i=document.getElementById('fi-'+p);if(i)i.focus();},50);}
-function closeForm(){oForm=null;renderApp();}
+window._logout = function(){
+  if(cu) addAct(`${cu.name} saiu`,cu);
+  cu=null; renderLogin();
+};
 
+// ─── RENDER ──────────────────────────────────────────────────
 function renderApp(){
   const tabs=TABS[cu.role];
   const access=ACCESS[cu.role];
-  const visible=tasks.filter(t=>access.includes(t.profile));
-  const total=visible.length,done=visible.filter(t=>t.checked).length;
+  const dateKey=todayDateKey();
+  const dayTasks=taskDefs[currentDay]||[];
+  const visible=dayTasks.filter(t=>access.includes(t.profile));
+  const total=visible.length, done=visible.filter(t=>(checks[dateKey]||{})[t.id]?.checked).length;
   const pct=total===0?0:Math.round((done/total)*100);
+
   let html=`
   <div class="top-bar">
     <div style="display:flex;align-items:center;gap:10px">
@@ -272,11 +427,12 @@ function renderApp(){
     <div class="user-chip">
       <div class="chip-av" style="background:${cu.color}">${cu.name.charAt(0).toUpperCase()}</div>
       <div><div class="chip-name">${cu.name}</div><div class="chip-role">${RL[cu.role]}</div></div>
-      <button class="chip-out" onclick="logout()"><i class="ti ti-logout"></i></button>
+      <button class="chip-out" onclick="window._logout()"><i class="ti ti-logout"></i></button>
     </div>
   </div>
+  <div class="sync-bar" id="sync-bar" style="display:none"><i class="ti ti-cloud"></i> Sincronizando...</div>
   <div class="prog-card">
-    <div class="prog-top"><span class="prog-label">Progresso geral</span><span class="prog-pct">${pct}%</span></div>
+    <div class="prog-top"><span class="prog-label">Progresso — ${DAY_FULL[currentDay]}</span><span class="prog-pct">${pct}%</span></div>
     <div class="prog-track"><div class="prog-fill${pct===100?' done':''}" style="width:${pct}%"></div></div>
     <div class="prog-status ${pct===100?'ready':'pending'}">
       <i class="ti ${pct===100?'ti-circle-check':'ti-alert-triangle'}"></i>
@@ -286,89 +442,257 @@ function renderApp(){
   <div id="tab-content"></div>
   <div class="bot-nav">`;
   [{k:'checklist',icon:'ti-checklist',lbl:'Checklist'},{k:'dashboard',icon:'ti-chart-bar',lbl:'Dashboard'},{k:'admin',icon:'ti-users',lbl:'Usuários'}].forEach(t=>{
-    if(tabs.includes(t.k)) html+=`<button class="nav-btn${tab===t.k?' active':''}" onclick="setTab('${t.k}')"><i class="ti ${t.icon}"></i><span>${t.lbl}</span></button>`;
+    if(tabs.includes(t.k)) html+=`<button class="nav-btn${tab===t.k?' active':''}" onclick="window._setTab('${t.k}')"><i class="ti ${t.icon}"></i><span>${t.lbl}</span></button>`;
   });
   html+=`</div>`;
   root().innerHTML=html;
-  if(tab==='checklist')renderChecklist();
-  else if(tab==='dashboard')renderDashboard();
-  else renderAdmin();}
+  renderContent();
+}
+
+function renderContent(){
+  if(!document.getElementById('tab-content')) return;
+  if(tab==='checklist') renderChecklist();
+  else if(tab==='dashboard') renderDashboard();
+  else renderAdmin();
+}
+
+window._setTab = function(t){tab=t;oForm=null;renderApp();};
+window._setProf = function(p){prof=p;oForm=null;renderChecklist();};
+window._setDay = function(d){
+  currentDay=d;
+  subscribeChecks(todayDateKey());
+  oForm=null;
+  renderApp();
+};
 
 function renderChecklist(){
   const access=ACCESS[cu.role];
   const canEdit=cu.role==='dono'||cu.role==='gerente';
-  let html='';
+  const dateKey=todayDateKey();
+  const dayChecks=checks[dateKey]||{};
+
+  // Day selector
+  const today=todayDayKey();
+  let html=`<div class="day-scroll">`;
+  const now=new Date();
+  DAYS.forEach((d,i)=>{
+    const dayDate=new Date(now);
+    const todayIdx=now.getDay()===0?6:now.getDay()-1;
+    const diff=i-todayIdx;
+    dayDate.setDate(now.getDate()+diff);
+    const dayNum=dayDate.getDate();
+    const hasTasks=(taskDefs[d]||[]).length>0;
+    html+=`<div class="day-chip${currentDay===d?' active':''}${hasTasks?' has-tasks':''}" onclick="window._setDay('${d}')">
+      <span class="day-name">${DAY_LABELS[d]}</span>
+      <span class="day-num">${dayNum}</span>
+      <span class="day-dot"></span>
+    </div>`;
+  });
+  html+=`</div>`;
+
+  // Profile filter
   if(access.length>1){
     html+=`<div class="profile-scroll">`;
-    html+=`<div class="prof-chip${prof==='todos'?' active':''}" onclick="setProf('todos')"><i class="ti ti-layout-grid"></i> Todos</div>`;
-    access.forEach(p=>{html+=`<div class="prof-chip${prof===p?' active':''}" onclick="setProf('${p}')"><i class="ti ${PI[p]}"></i> ${PL[p]}</div>`;});
+    html+=`<div class="prof-chip${prof==='todos'?' active':''}" onclick="window._setProf('todos')"><i class="ti ti-layout-grid"></i> Todos</div>`;
+    access.forEach(p=>{html+=`<div class="prof-chip${prof===p?' active':''}" onclick="window._setProf('${p}')"><i class="ti ${PI[p]}"></i> ${PL[p]}</div>`;});
     html+=`</div>`;
   }
+
   const show=(prof==='todos'||!access.includes(prof))?access:[prof];
   show.forEach(p=>{
-    const pt=tasks.filter(t=>t.profile===p);
-    const dc=pt.filter(t=>t.checked).length;
+    const pt=(taskDefs[currentDay]||[]).filter(t=>t.profile===p);
+    const dc=pt.filter(t=>dayChecks[t.id]?.checked).length;
     html+=`<div class="section"><div class="sec-head"><span class="sec-title">${PL[p]}</span><span class="sec-badge">${dc}/${pt.length}</span></div>`;
     pt.forEach(t=>{
-      html+=`<div class="task-card${t.checked?' checked':''}" onclick="toggleTask(${t.id})">
+      const ch=dayChecks[t.id]||{};
+      html+=`<div class="task-card${ch.checked?' checked':''}" onclick="window._toggleTask('${t.id}')">
         <div class="check-box"><i class="ti ti-check"></i></div>
         <div class="task-body">
           <div class="task-text">${t.text}</div>
-          ${t.checked&&t.checkedBy?`<div class="task-by"><i class="ti ti-user"></i>${t.checkedBy} · ${t.checkedAt}</div>`:''}
+          ${ch.checked&&ch.checkedBy?`<div class="task-by"><i class="ti ti-user"></i>${ch.checkedBy} · ${ch.checkedAt}</div>`:''}
         </div>
         <div class="task-right">
           <span class="tag ${TC[t.tag]}">${TL[t.tag]}</span>
-          ${canEdit?`<button class="del-btn" onclick="event.stopPropagation();delTask(${t.id})"><i class="ti ti-trash"></i></button>`:''}
+          ${canEdit?`<button class="del-btn" onclick="event.stopPropagation();window._delTask('${t.id}')"><i class="ti ti-trash"></i></button>`:''}
         </div>
       </div>`;
     });
     if(canEdit){
       const fo=oForm===p;
-      html+=`<button class="add-trigger" style="display:${fo?'none':'flex'}" onclick="openForm('${p}')"><i class="ti ti-plus"></i> Adicionar tarefa</button>`;
+      html+=`<button class="add-trigger" style="display:${fo?'none':'flex'}" onclick="window._openForm('${p}')"><i class="ti ti-plus"></i> Adicionar tarefa</button>`;
       html+=`<div class="add-form${fo?' open':''}">
-        <input class="add-input" id="fi-${p}" placeholder="Descreva a tarefa..." onkeydown="hkey(event,'${p}')" />
+        <input class="add-input" id="fi-${p}" placeholder="Descreva a tarefa..." onkeydown="window._hkey(event,'${p}')" />
         <div class="add-row">
           <select class="add-select" id="ft-${p}">
             <option value="urgent">Urgente</option><option value="config">Config</option><option value="op">Operação</option><option value="fin">Financeiro</option>
           </select>
-          <button class="btn-cancel" onclick="closeForm()">Cancelar</button>
-          <button class="btn-add" onclick="confirmAdd('${p}')">Adicionar</button>
+          <button class="btn-cancel" onclick="window._closeForm()">Cancelar</button>
+          <button class="btn-add" onclick="window._confirmAdd('${p}')">Adicionar</button>
         </div>
       </div>`;
     }
     html+=`</div>`;
   });
-  if(canEdit)html+=`<div class="reset-row"><button class="reset-btn" onclick="resetAll()"><i class="ti ti-restore"></i> Resetar todos os checks</button></div>`;
-  document.getElementById('tab-content').innerHTML=html;}
+  if(canEdit) html+=`<div class="reset-row"><button class="reset-btn" onclick="window._resetDay()"><i class="ti ti-restore"></i> Resetar checks do dia</button></div>`;
+  document.getElementById('tab-content').innerHTML=html;
+}
+
+function drawDonut(canvasId, segments){
+  const canvas=document.getElementById(canvasId);
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const cx=canvas.width/2,cy=canvas.height/2,r=cx-4;
+  const total=segments.reduce((a,s)=>a+s.value,0);
+  if(total===0){
+    ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
+    ctx.fillStyle='#f0f0f0';ctx.fill();
+    ctx.beginPath();ctx.arc(cx,cy,r*0.55,0,Math.PI*2);
+    ctx.fillStyle='#fff';ctx.fill();
+    return;
+  }
+  let start=-Math.PI/2;
+  segments.forEach(s=>{
+    if(s.value===0)return;
+    const angle=(s.value/total)*Math.PI*2;
+    ctx.beginPath();ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r,start,start+angle);
+    ctx.closePath();ctx.fillStyle=s.color;ctx.fill();
+    start+=angle;
+  });
+  ctx.beginPath();ctx.arc(cx,cy,r*0.55,0,Math.PI*2);
+  ctx.fillStyle='#fff';ctx.fill();
+}
 
 function renderDashboard(){
-  const total=tasks.length,done=tasks.filter(t=>t.checked).length,pct=total===0?0:Math.round((done/total)*100);
+  const dateKey=todayDateKey();
+  const dayChecks=checks[dateKey]||{};
+  const dayTasks=taskDefs[currentDay]||[];
+  const total=dayTasks.length, done=dayTasks.filter(t=>dayChecks[t.id]?.checked).length;
+  const pct=total===0?0:Math.round((done/total)*100);
+
   let html=`<div class="dash-pad">`;
+
+  // Metrics
   html+=`<div class="metric-row">
-    <div class="metric-card"><div class="metric-label">Concluídas</div><div class="metric-val green">${done}</div></div>
+    <div class="metric-card"><div class="metric-label">Concluídas hoje</div><div class="metric-val green">${done}</div></div>
     <div class="metric-card"><div class="metric-label">Pendentes</div><div class="metric-val${total-done>0?' red':''}">${total-done}</div></div>
-    <div class="metric-card"><div class="metric-label">Total</div><div class="metric-val">${total}</div></div>
+    <div class="metric-card"><div class="metric-label">Total hoje</div><div class="metric-val">${total}</div></div>
     <div class="metric-card"><div class="metric-label">Conclusão</div><div class="metric-val${pct===100?' green':''}">${pct}%</div></div>
   </div>`;
-  html+=`<div class="sec-head" style="margin-bottom:10px"><span class="sec-title">Por perfil</span></div>`;
+
+  // Pizza por perfil (hoje)
+  const segments=SO.map(p=>({
+    label:PL[p], color:PC[p],
+    value:dayTasks.filter(t=>t.profile===p&&dayChecks[t.id]?.checked).length,
+    total:dayTasks.filter(t=>t.profile===p).length,
+  }));
+  html+=`<div class="pizza-card">
+    <div class="chart-title">Conclusão por perfil — hoje</div>
+    <div class="pizza-wrap">
+      <canvas id="pizza-canvas" width="120" height="120" style="flex-shrink:0"></canvas>
+      <div class="pizza-legend">`;
+  segments.forEach(s=>{
+    const p2=s.total===0?0:Math.round((s.value/s.total)*100);
+    html+=`<div class="legend-item">
+      <div class="legend-dot" style="background:${s.color}"></div>
+      <span class="legend-label">${s.label}</span>
+      <span class="legend-val">${s.value}<span class="legend-pct">/${s.total}</span></span>
+    </div>`;
+  });
+  html+=`</div></div></div>`;
+
+  // Bar chart por dia da semana (histórico)
+  html+=`<div class="bar-chart-card">
+    <div class="chart-title">Conclusão por dia da semana</div>`;
+  DAYS.forEach((d,i)=>{
+    const dayEntries=Object.entries(history).filter(([k,v])=>v.dayKey===d);
+    let avg=0;
+    if(dayEntries.length>0){
+      const sum=dayEntries.reduce((a,[k,v])=>a+(v.total>0?v.done/v.total:0),0);
+      avg=Math.round((sum/dayEntries.length)*100);
+    }
+    const col=DAY_COLORS[i];
+    html+=`<div class="bar-row">
+      <span class="bar-day">${DAY_LABELS[d]}</span>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${avg}%;background:${col}"><span>${avg>15?avg+'%':''}</span></div>
+      </div>
+      <span class="bar-pct">${avg}%</span>
+    </div>`;
+  });
+  html+=`</div>`;
+
+  // Comparativo semanal
+  const thisWeekKeys=Object.entries(history).filter(([k,v])=>{
+    const d=new Date(k+'T12:00:00');
+    const now=new Date();
+    const startOfWeek=new Date(now);
+    startOfWeek.setDate(now.getDate()-now.getDay());
+    return d>=startOfWeek;
+  });
+  const lastWeekKeys=Object.entries(history).filter(([k,v])=>{
+    const d=new Date(k+'T12:00:00');
+    const now=new Date();
+    const startOfThisWeek=new Date(now);
+    startOfThisWeek.setDate(now.getDate()-now.getDay());
+    const startOfLastWeek=new Date(startOfThisWeek);
+    startOfLastWeek.setDate(startOfThisWeek.getDate()-7);
+    return d>=startOfLastWeek && d<startOfThisWeek;
+  });
+
+  function weekAvg(entries){
+    if(entries.length===0)return 0;
+    const sum=entries.reduce((a,[k,v])=>a+(v.total>0?v.done/v.total:0),0);
+    return Math.round((sum/entries.length)*100);
+  }
+  const thisAvg=weekAvg(thisWeekKeys), lastAvg=weekAvg(lastWeekKeys);
+  const diff=thisAvg-lastAvg;
+  const diffCls=diff>0?'up':diff<0?'down':'same';
+  const diffIcon=diff>0?'ti-trending-up':diff<0?'ti-trending-down':'ti-minus';
+
+  html+=`<div class="week-compare">
+    <div class="chart-title">Comparativo semanal</div>
+    <div class="compare-row">
+      <div class="compare-card">
+        <div class="compare-label">Esta semana</div>
+        <div class="compare-val">${thisAvg}%</div>
+        <div class="compare-sub">${thisWeekKeys.length} dia(s) registrado(s)</div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-label">Semana anterior</div>
+        <div class="compare-val">${lastAvg}%</div>
+        <div class="compare-sub">${lastWeekKeys.length} dia(s) registrado(s)</div>
+      </div>
+    </div>
+    <div class="compare-diff ${diffCls}">
+      <i class="ti ${diffIcon}"></i>
+      ${diff===0?'Igual à semana anterior':Math.abs(diff)+'% '+(diff>0?'acima':'abaixo')+' da semana anterior'}
+    </div>
+  </div>`;
+
+  // Status por perfil
+  html+=`<div class="sec-head" style="margin-bottom:10px"><span class="sec-title">Por perfil — hoje</span></div>`;
   SO.forEach(p=>{
-    const pt=tasks.filter(t=>t.profile===p),dc=pt.filter(t=>t.checked).length;
-    const pp=pt.length===0?0:Math.round((dc/pt.length)*100),col=PC[p];
+    const pt=dayTasks.filter(t=>t.profile===p), dc=pt.filter(t=>dayChecks[t.id]?.checked).length;
+    const pp=pt.length===0?0:Math.round((dc/pt.length)*100), col=PC[p];
     let bCls='badge-part',bTxt=pp+'%';
     if(pp===100){bCls='badge-ok';bTxt='Completo';}else if(pp===0){bCls='badge-pend';bTxt='Pendente';}
     html+=`<div class="prof-stat-card"><div class="ps-head"><div class="ps-icon" style="background:${col}22"><i class="ti ${PI[p]}" style="color:${col}"></i></div><span class="ps-name">${PL[p]}</span><span class="ps-badge ${bCls}">${bTxt}</span></div><div class="ps-track"><div class="ps-fill" style="width:${pp}%;background:${col}"></div></div><div class="ps-count"><span>${dc}</span> de <span>${pt.length}</span> tarefas concluídas</div></div>`;
   });
+
   if(activity.length>0){
     html+=`<div class="sec-head" style="margin:4px 0 10px"><span class="sec-title">Atividade recente</span></div>`;
-    activity.slice(0,10).forEach(a=>{html+=`<div class="act-item"><div class="act-dot" style="background:${a.color}"></div><div class="act-body"><div class="act-text">${a.text}</div><div class="act-meta">${a.date} · ${a.time}</div></div><span class="act-who who-${a.role}">${a.who}</span></div>`;});
+    activity.slice(0,8).forEach(a=>{html+=`<div class="act-item"><div class="act-dot" style="background:${a.color}"></div><div class="act-body"><div class="act-text">${a.text}</div><div class="act-meta">${a.date} · ${a.time}</div></div><span class="act-who who-${a.role}">${a.who}</span></div>`;});
   }
-  html+=`<button class="snap-btn" onclick="saveSnap()"><i class="ti ti-device-floppy"></i> Salvar snapshot do dia</button></div>`;
-  document.getElementById('tab-content').innerHTML=html;}
+  html+=`</div>`;
+  document.getElementById('tab-content').innerHTML=html;
+  drawDonut('pizza-canvas', segments.map(s=>({color:s.color,value:s.value})));
+}
 
 function renderAdmin(){
   let html=`<div class="admin-pad"><div class="sec-head" style="margin-bottom:10px"><span class="sec-title">Usuários</span><span class="sec-badge">${users.length}</span></div>`;
   users.forEach(u=>{
-    html+=`<div class="user-card"><div class="u-av" style="background:${u.color}">${u.name.charAt(0).toUpperCase()}</div><div class="u-info"><div class="u-name">${u.name}</div><div class="u-sub">Senha: ${'•'.repeat(u.password.length)}</div></div><span class="u-role ${RC[u.role]}">${RL[u.role]}</span>${u.id!=='u1'?`<button class="u-del" onclick="delUser('${u.id}')"><i class="ti ti-trash"></i></button>`:''}</div>`;
+    html+=`<div class="user-card"><div class="u-av" style="background:${u.color}">${u.name.charAt(0).toUpperCase()}</div><div class="u-info"><div class="u-name">${u.name}</div><div class="u-sub">${RL[u.role]} · Senha: ${'•'.repeat(u.password.length)}</div></div><span class="u-role ${RC[u.role]}">${RL[u.role]}</span>${u.id!=='u1'?`<button class="u-del" onclick="window._delUser('${u.id}')"><i class="ti ti-trash"></i></button>`:''}</div>`;
   });
   html+=`<div class="sec-head" style="margin:16px 0 10px"><span class="sec-title">Adicionar usuário</span></div>
   <div class="new-user-form">
@@ -378,58 +702,99 @@ function renderAdmin(){
     </div>
     <div class="field" style="margin:10px 0 14px"><label>Perfil</label>
       <select class="add-select" id="ur" style="width:100%">
-        <option value="gerente">Gerente</option>
-        <option value="caixa">Caixa</option>
-        <option value="expedicao">Expedição</option>
+        <option value="gerente">Gerente</option><option value="caixa">Caixa</option><option value="expedicao">Expedição</option>
       </select>
     </div>
-    <button class="btn-add" style="width:100%;padding:14px" onclick="addUser()"><i class="ti ti-user-plus"></i> Cadastrar</button>
+    <button class="btn-add" style="width:100%;padding:14px" onclick="window._addUser()"><i class="ti ti-user-plus"></i> Cadastrar</button>
   </div></div>`;
-  document.getElementById('tab-content').innerHTML=html;}
+  document.getElementById('tab-content').innerHTML=html;
+}
 
-function hkey(e,p){if(e.key==='Enter')confirmAdd(p);if(e.key==='Escape')closeForm();}
+// ─── ACTIONS ─────────────────────────────────────────────────
+window._openForm = p=>{oForm=p;renderChecklist();setTimeout(()=>{const i=document.getElementById('fi-'+p);if(i)i.focus();},50);};
+window._closeForm = ()=>{oForm=null;renderChecklist();};
+window._hkey = (e,p)=>{if(e.key==='Enter')window._confirmAdd(p);if(e.key==='Escape')window._closeForm();};
 
-function toggleTask(id){
-  const t=tasks.find(x=>x.id===id);if(!t)return;
-  t.checked=!t.checked;t.checkedBy=t.checked?cu.name:null;t.checkedAt=t.checked?nt():null;
-  save();renderApp();if(t.checked)addAct(`Concluiu: "${t.text}"`,cu);}
+window._toggleTask = async(id)=>{
+  const dateKey=todayDateKey();
+  if(!checks[dateKey]) checks[dateKey]={};
+  const cur=checks[dateKey][id]||{};
+  const nowChecked=!cur.checked;
+  checks[dateKey][id]={checked:nowChecked,checkedBy:nowChecked?cu.name:null,checkedAt:nowChecked?nt():null};
+  renderApp();
+  await saveChecks(dateKey);
+  if(nowChecked){
+    const t=(taskDefs[currentDay]||[]).find(x=>x.id===id);
+    if(t) addAct(`Concluiu: "${t.text}"`,cu);
+  }
+};
 
-function delTask(id){
+window._delTask = async(id)=>{
   if(!confirm('Excluir esta tarefa?'))return;
-  tasks=tasks.filter(x=>x.id!==id);save();renderApp();}
+  taskDefs[currentDay]=(taskDefs[currentDay]||[]).filter(t=>t.id!==id);
+  renderApp();
+  await fbSave('app/taskDefs',{data:taskDefs});
+};
 
-function confirmAdd(p){
+window._confirmAdd = async(p)=>{
   const inp=document.getElementById('fi-'+p),sel=document.getElementById('ft-'+p);
   const text=inp?inp.value.trim():'';if(!text)return;
-  tasks.push({id:nTId++,profile:p,text,tag:sel.value,checked:false,checkedBy:null,checkedAt:null});
-  oForm=null;save();renderApp();}
+  const newId=`custom_${Date.now()}`;
+  if(!taskDefs[currentDay]) taskDefs[currentDay]=[];
+  taskDefs[currentDay].push({id:newId,profile:p,text,tag:sel.value});
+  oForm=null; renderApp();
+  await fbSave('app/taskDefs',{data:taskDefs});
+};
 
-function resetAll(){
-  if(!confirm('Resetar todos os checks?'))return;
-  tasks=tasks.map(t=>({...t,checked:false,checkedBy:null,checkedAt:null}));
-  save();renderApp();addAct('Resetou todos os checks',cu);}
+window._resetDay = async()=>{
+  if(!confirm('Resetar todos os checks do dia?'))return;
+  const dateKey=todayDateKey();
+  checks[dateKey]={};
+  renderApp();
+  await saveChecks(dateKey);
+  addAct('Resetou os checks do dia',cu);
+};
 
-function addUser(){
+window._addUser = async()=>{
   const n=document.getElementById('un').value.trim(),p=document.getElementById('up').value,r=document.getElementById('ur').value;
   if(!n||!p){alert('Preencha nome e senha.');return;}
   if(users.find(u=>u.name.toLowerCase()===n.toLowerCase())){alert('Usuário já existe.');return;}
-  users.push({id:'u'+nUId++,name:n,password:p,role:r,color:RCOL[r]});
-  save();addAct(`Cadastrou: ${n} (${RL[r]})`,cu);renderApp();}
+  const newId='u'+Date.now();
+  users.push({id:newId,name:n,password:p,role:r,color:RCOL[r]});
+  await fbSave('app/users',{data:users});
+  addAct(`Cadastrou: ${n} (${RL[r]})`,cu); renderAdmin();
+};
 
-function delUser(id){
+window._delUser = async(id)=>{
   const u=users.find(x=>x.id===id);
   if(!u||!confirm(`Remover "${u.name}"?`))return;
-  users=users.filter(x=>x.id!==id);save();addAct(`Removeu: ${u.name}`,cu);renderApp();}
+  users=users.filter(x=>x.id!==id);
+  await fbSave('app/users',{data:users});
+  addAct(`Removeu: ${u.name}`,cu); renderAdmin();
+};
 
-function addAct(text,user){
+async function addAct(text,user){
   activity.unshift({text,who:user.name,role:user.role,color:user.color,time:nt(),date:td()});
-  if(activity.length>50)activity=activity.slice(0,50);save();}
+  if(activity.length>50) activity=activity.slice(0,50);
+  await fbSave('app/activity',{data:activity});
+}
 
-function saveSnap(){
-  addAct('Salvou snapshot do dia',cu);
-  alert('Snapshot salvo!');renderDashboard();}
+// ─── INIT ─────────────────────────────────────────────────────
+root().innerHTML=`<div class="loading-screen"><div class="spinner"></div><span>Conectando ao servidor...</span></div>`;
+fbLoad().then(()=>{
+  // wait for first snapshot
+  setTimeout(()=>{renderLogin();},800);
+});
+</script>
 
-init();
+<script>
+// Fix Firestore rules reminder
+window.addEventListener('error', function(e){
+  if(e.message && e.message.includes('permission')){
+    const b=document.getElementById('sync-bar');
+    if(b){b.style.display='flex';b.className='sync-bar error';b.innerHTML='<i class="ti ti-lock"></i> Acesso negado — configure as regras do Firestore';}
+  }
+});
 </script>
 </body>
 </html>
